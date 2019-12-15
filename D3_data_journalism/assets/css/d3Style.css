@@ -1,56 +1,32 @@
 .aText {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 16px;
-  text-emphasis: true;
-  fill: rgba(10, 143, 170, 0.8);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 18px;
+  fill: black;
   text-anchor: left;
 }
 
-.active {
-  font-weight: bold;
-  fill: #000;
-  transition: fill 0.3s ease-out;
-  text-anchor: middle;
-}
 
-.inactive {
-  font-weight: lighter;
-  fill: #c9c9c9;
-  transition: fill 0.3s ease-out;
-  text-anchor: middle;
-}
-
-.inactive:hover {
-  fill: #000;
-  cursor: pointer;
-}
 
 /* font size dependent on radius, see app.js */
 .stateText {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   fill: #fff;
   text-anchor: middle;
+  stroke-width: "0.8";
+  font-size: 8px;
 }
 
-.stateCircle {
-  fill: #89bdd3;
-  stroke: #e3e3e3;
-}
-
-.chart {
-  display: block;
-  margin: 0;
-}
 
 .d3-tip {
   padding: 6px;
-  font-size: 10px;
+  font-size: 12px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   line-height: 1;
   line-height: 1.5em;
   color: #fff;
   text-align: center;
   text-transform: capitalize;
-  background: rgba(14, 97, 117, 0.8);
+  background: rgba(18, 137, 167, 0.8);
   stroke: #e3e3e3;
   border-radius: 4px;
 }

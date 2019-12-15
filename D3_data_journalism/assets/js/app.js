@@ -1,5 +1,5 @@
-// @TODO: YOUR CODE HERE!
-// set the dimensions and margins of the graph
+
+// Set the dimensions and margins of the graph
 
 var svgWidth = 960;
 var svgHeight = 500;
@@ -8,7 +8,7 @@ var margin = {
     top: 60,
     right: 100,
     bottom: 60,
-    left: 100
+    left: 50
 };
 
 var width = svgWidth - margin.left - margin.right;
@@ -31,19 +31,19 @@ d3.csv("assets/data/data.csv").then(function(data) {
     
     // Step 1: Parse Data/Cast as numbers
     // // ==============================
-    // data.forEach(function(data) {
-    //     data.poverty = +data.poverty;
-    //     data.healthcare = +data.healthcare;
-    //   });
+    data.forEach(function(data) {
+        data.income = +data.income;
+        data.obesity = +data.obesity;
+      });
   
       // Step 2: Create scale functions
       // ==============================
       var xLinearScale = d3.scaleLinear()
-        .domain([22, d3.max(data, d => d.poverty)])
-        .range([width, 0]);
+        .domain([38000, d3.max(data, d => d.income)])
+        .range([0, width]);
   
       var yLinearScale = d3.scaleLinear()
-        .domain([26, 0])
+        .domain([40, 0])
         .range([0, height]);
   
     //   // Step 3: Create axis functions
@@ -66,26 +66,39 @@ d3.csv("assets/data/data.csv").then(function(data) {
       .data(data)
       .enter()
       .append("circle")
-      .attr("cx", d => xLinearScale(d.poverty))
-      .attr("cy", d => yLinearScale(d.healthcare))
+      .attr("cx", d => xLinearScale(d.income))
+      .attr("cy", d => yLinearScale(d.obesity))
       .attr("r", "10")
-      .attr("fill", "rgb(10, 143, 170, 0.8)")
-      .attr("opacity", ".5");
-  
-     // Step 6: Initialize tool tip
+      .attr("fill", "rgb(13, 124, 146, 0.8)")
+      .attr("opacity", ".7");
+    
+       //   // Step 6: Add State Abbreviations to the Circles
+    //   // ==============================
+
+      var textGroup = chartGroup.selectAll("stateText")
+      .data(data)
+      .enter()
+      .append("text")
+      .text(d => d.abbr)
+      .attr("class", "stateText")
+      .attr("x", d => xLinearScale(d.income))
+      .attr("y", d => yLinearScale(d.obesity));
+      
+
+     // Step 7: Initialize tool tip
     // ==============================
     var toolTip = d3.tip()
       .attr("class","d3-tip")
       .offset([80, -60])
       .html(function(d) {
-        return (`${d.abbr}<br>Poverty Rate: ${d.poverty}%<br>Lacks Healthcare: ${d.healthcare}%`);
+        return (`${d.abbr}<br>Income:$${d.income}<br>Obesity: ${d.obesity}%`);
       });
 
-    // Step 7: Create tooltip in the chart
+    // Step 8: Create tooltip in the chart
     // ==============================
     chartGroup.call(toolTip);
 
-    // Step 8: Create event listeners to display and hide the tooltip
+    // Step 9: Create event listeners to display and hide the tooltip
     // ==============================
     circlesGroup.on("mouseover", function(data) {
       toolTip.show(data, this);
@@ -95,20 +108,20 @@ d3.csv("assets/data/data.csv").then(function(data) {
         toolTip.hide(data);
       });
 
-  
-      // Create axes labels
+      
+      // Step. 10 Create axes labels
       chartGroup.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left + 50)
+        .attr("y", 0 - margin.left - 5)
         .attr("x", 0 - (height /1.5))
         .attr("dy", "1em")
         .attr("class", "aText")
-        .text("Lacks Healthcare (%)");
+        .text("Obesity (%)");
   
       chartGroup.append("text")
         .attr("transform", `translate(${width /2}, ${height + margin.top - 20})`)
         .attr("class", "aText")
-        .text("In Poverty (%)");
+        .text("Income ($)");
     }).catch(function(error) {
     console.log(error);
     });
