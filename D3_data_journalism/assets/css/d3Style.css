@@ -1,7 +1,9 @@
 .aText {
-  font-family: sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 16px;
-  text-anchor: middle;
+  text-emphasis: true;
+  fill: rgba(10, 143, 170, 0.8);
+  text-anchor: left;
 }
 
 .active {
@@ -25,7 +27,7 @@
 
 /* font size dependent on radius, see app.js */
 .stateText {
-  font-family: sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   fill: #fff;
   text-anchor: middle;
 }
@@ -42,13 +44,14 @@
 
 .d3-tip {
   padding: 6px;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1;
   line-height: 1.5em;
   color: #fff;
   text-align: center;
   text-transform: capitalize;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(14, 97, 117, 0.8);
+  stroke: #e3e3e3;
   border-radius: 4px;
 }
 
@@ -58,9 +61,7 @@
     display: none;
   }
 
-  .aText {
-    font-size: 14px;
-  }
+  
 }
 
 @media screen and (max-width: 400px) {
