@@ -1,8 +1,7 @@
 # D3-Challenge
 
 Using data from the U.S. Census Bureau, I created an intriguing D3 scatter plot with two of the various data variables in the data set to show the relationship between income and obesity rates in each state and D.C.
-
-
+![D3Times](https://user-images.githubusercontent.com/54033512/70929949-c45d7b80-1ff9-11ea-9d86-cb19c99d8b3a.png)
 
 ## About the Data
 
